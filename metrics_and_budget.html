@@ -1,0 +1,211 @@
+                    
+                    <!-- New in v1.01: Enhanced data visualization for metrics -->
+                    <div class="data-visualization">
+                        <div class="chart-container">
+                            <!-- This would be replaced with actual chart in production -->
+                            <div style="width: 100%; height: 100%; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; font-style: italic; color: #6c757d;">
+                                Interactive metrics trend visualization (updated daily)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="budget">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h2 class="card-title">SEO Budget Allocation</h2>
+                            <p class="card-subtitle">6-month budget planning and allocation</p>
+                        </div>
+                    </div>
+                    
+                    <div class="budget-overview">
+                        <div>
+                            <h3>Total SEO Budget</h3>
+                            <div class="budget-total">$24,000</div>
+                            <p>June - November 2025</p>
+                            
+                            <div class="budget-allocation">
+                                <div class="allocation-item">
+                                    <div class="allocation-label">Technical SEO</div>
+                                    <div class="allocation-value">$8,400 (35%)</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress progress-1"></div>
+                                </div>
+                                
+                                <div class="allocation-item">
+                                    <div class="allocation-label">Content Development</div>
+                                    <div class="allocation-value">$6,000 (25%)</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress progress-2"></div>
+                                </div>
+                                
+                                <div class="allocation-item">
+                                    <div class="allocation-label">Link Building</div>
+                                    <div class="allocation-value">$4,800 (20%)</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress progress-3"></div>
+                                </div>
+                                
+                                <div class="allocation-item">
+                                    <div class="allocation-label">Local SEO</div>
+                                    <div class="allocation-value">$3,600 (15%)</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress progress-4"></div>
+                                </div>
+                                
+                                <div class="allocation-item">
+                                    <div class="allocation-label">Monitoring & Reporting</div>
+                                    <div class="allocation-value">$1,200 (5%)</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress progress-5"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- New in v1.01: Budget timeline visualization -->
+                        <div>
+                            <h3>Monthly Budget Breakdown</h3>
+                            <div class="data-visualization">
+                                <div class="chart-container">
+                                    <!-- This would be replaced with actual chart in production -->
+                                    <div style="width: 100%; height: 100%; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; font-style: italic; color: #6c757d;">
+                                        Interactive monthly budget allocation chart
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="budget-notes" style="margin-top: 20px; font-size: 14px;">
+                                <p><strong>Budget Notes:</strong></p>
+                                <ul style="list-style-type: disc; padding-left: 20px; margin-top: 10px;">
+                                    <li>Front-loaded technical optimization expenses in months 1-2</li>
+                                    <li>Gradual increase in content development investment</li>
+                                    <li>Link building campaign peaks in month 4</li>
+                                    <li>Monthly reporting included throughout campaign</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- New in v1.01: ROI Projection section -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h2 class="card-title">ROI Projection</h2>
+                            <p class="card-subtitle">Estimated return on SEO investment</p>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 20px;">
+                        <table class="keywords-table">
+                            <thead>
+                                <tr>
+                                    <th>Timeline</th>
+                                    <th>Traffic Increase</th>
+                                    <th>Conversion Increase</th>
+                                    <th>Revenue Increase</th>
+                                    <th>ROI</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3 Months</td>
+                                    <td>+25%</td>
+                                    <td>+0.5%</td>
+                                    <td>$32,000</td>
+                                    <td>33%</td>
+                                </tr>
+                                <tr>
+                                    <td>6 Months</td>
+                                    <td>+48%</td>
+                                    <td>+1.2%</td>
+                                    <td>$87,500</td>
+                                    <td>264%</td>
+                                </tr>
+                                <tr>
+                                    <td>12 Months</td>
+                                    <td>+86%</td>
+                                    <td>+2.5%</td>
+                                    <td>$196,000</td>
+                                    <td>717%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Last updated: May 17, 2025</p>
+            <div class="seo-design-lab-branding">
+                <p>Powered by <a href="#">SEO Design Lab</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab Navigation
+            const tabItems = document.querySelectorAll('.tab-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabItems.forEach(tab => tab.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to selected tab and content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // New in v1.01: Enhanced tooltips for data visualization
+            const charts = document.querySelectorAll('.chart-container');
+            
+            charts.forEach(chart => {
+                // This is a placeholder for actual chart implementation
+                // In a real implementation, this would be replaced with 
+                // code to initialize charts and add interactivity
+                
+                // Example of tooltip creation
+                const tooltip = document.createElement('div');
+                tooltip.className = 'tooltip';
+                chart.appendChild(tooltip);
+                
+                // Placeholder for chart interactivity
+                chart.addEventListener('mousemove', function(e) {
+                    // This is just a placeholder for real chart interaction
+                    const rect = chart.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    // Only show tooltip on the actual chart area (placeholder)
+                    if (e.target.style && e.target.style.backgroundColor === 'rgb(248, 249, 250)') {
+                        return;
+                    }
+                    
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = x + 'px';
+                    tooltip.style.top = y + 'px';
+                    tooltip.textContent = 'Sample Data Point';
+                });
+                
+                chart.addEventListener('mouseout', function() {
+                    tooltip.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
