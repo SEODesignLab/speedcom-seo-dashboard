@@ -3,20 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speedcom SEO Strategy Dashboard v1.01</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Speedcom SEO Strategy Dashboard v1.01 - SEODesignLab</title>
     <style>
-        :root {
-            --primary-color: #e63946;
-            --secondary-color: #1d3557;
-            --accent-color: #457b9d;
-            --light-color: #f1faee;
-            --dark-color: #1d3557;
-            --success-color: #2a9d8f;
-            --warning-color: #e9c46a;
-            --danger-color: #e76f51;
-        }
-        
         * {
             margin: 0;
             padding: 0;
@@ -24,688 +12,791 @@
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
             color: #333;
-            background-color: #f8f9fa;
         }
         
-        .container {
-            max-width: 1200px;
+        .dashboard {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
         
-        header {
-            background-color: var(--secondary-color);
+        .header {
+            background: linear-gradient(135deg, #d32f2f, #000);
             color: white;
-            padding: 20px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-            margin-right: 15px;
-        }
-        
-        .logo-text h1 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .logo-text p {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        
-        .version-info {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .dashboard {
-            margin-top: 30px;
-        }
-        
-        .tabs {
-            display: flex;
-            border-bottom: 1px solid #dee2e6;
+            padding: 20px;
+            border-radius: 10px;
             margin-bottom: 20px;
+            position: relative;
         }
         
-        .tab-item {
-            padding: 10px 20px;
+        .branding {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .branding .logo {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #5D67FF;
+            font-size: 1.2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-tab {
+            flex: 1 1 auto;
+            min-width: 120px;
+            padding: 12px 20px;
+            background: #f0f0f0;
+            margin: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 600;
         }
         
-        .tab-item:hover {
-            border-bottom-color: #ccc;
+        .nav-tab:hover {
+            background: #e0e0e0;
         }
         
-        .tab-item.active {
-            border-bottom-color: var(--primary-color);
-            font-weight: 500;
+        .nav-tab.active {
+            background: #d32f2f;
+            color: white;
         }
         
-        .tab-content {
+        .content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section {
             display: none;
         }
         
-        .tab-content.active {
+        .section.active {
             display: block;
-            animation: fadeIn 0.5s ease;
         }
         
-        .card {
-            background-color: white;
+        .critical-issues {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-bottom: 20px;
         }
         
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .card-title {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--secondary-color);
-        }
-        
-        .card-subtitle {
-            font-size: 14px;
-            color: #6c757d;
-        }
-        
-        .critical-issues {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+        .critical-title {
+            color: #856404;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         
         .issue-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background: white;
+            border-left: 4px solid #dc3545;
             padding: 15px;
-            border-left: 5px solid var(--primary-color);
-        }
-        
-        .issue-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
         .issue-title {
-            font-weight: 500;
-        }
-        
-        .issue-priority {
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .high {
-            background-color: #feeeee;
-            color: var(--danger-color);
-        }
-        
-        .medium {
-            background-color: #fff8e6;
-            color: var(--warning-color);
-        }
-        
-        .low {
-            background-color: #e6f7f5;
-            color: var(--success-color);
-        }
-        
-        .issue-description {
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-        
-        .issue-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            color: #6c757d;
-        }
-        
-        .keywords-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .keywords-table th, .keywords-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .keywords-table th {
-            background-color: #f8f9fa;
-            font-weight: 500;
-            color: var(--secondary-color);
-        }
-        
-        .keywords-table tr:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .timeline {
-            margin-top: 20px;
-        }
-        
-        .timeline-item {
-            display: flex;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 30px;
-            bottom: -30px;
-            width: 2px;
-            background-color: #eee;
-        }
-        
-        .timeline-item:last-child:before {
-            display: none;
-        }
-        
-        .timeline-marker {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: 500;
-            margin-right: 20px;
-            z-index: 1;
-        }
-        
-        .timeline-content {
-            flex: 1;
-        }
-        
-        .timeline-date {
-            font-size: 14px;
-            color: #6c757d;
+            font-weight: bold;
+            color: #dc3545;
             margin-bottom: 5px;
         }
         
-        .timeline-title {
-            font-weight: 500;
-            margin-bottom: 10px;
+        .keyword-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
         
-        .timeline-description {
-            font-size: 14px;
+        .keyword-card {
+            background: #f8f9ff;
+            border: 1px solid #e0e4e7;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .keyword {
+            background: #4caf50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 5px;
+            display: inline-block;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .timeline-item {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            margin-left: 40px;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #d32f2f;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: 40px;
+            bottom: -15px;
+            width: 2px;
+            background: #ddd;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .week-label {
+            background: #d32f2f;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 8px;
         }
         
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
         
         .metric-card {
-            background-color: white;
+            background: white;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            padding: 15px;
             text-align: center;
         }
         
         .metric-value {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 10px 0;
-        }
-        
-        .metric-title {
-            font-weight: 500;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d32f2f;
             margin-bottom: 5px;
         }
         
-        .metric-change {
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .metric-positive {
-            color: var(--success-color);
-        }
-        
-        .metric-negative {
-            color: var(--danger-color);
-        }
-        
-        .budget-overview {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .budget-total {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 10px 0;
-        }
-        
-        .budget-allocation {
-            width: 100%;
-            margin-top: 20px;
-        }
-        
-        .allocation-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        
-        .allocation-label {
-            font-weight: 500;
-        }
-        
-        .allocation-value {
-            font-weight: 500;
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
         }
         
         .progress-bar {
-            height: 8px;
-            background-color: #eee;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            background: #f0f0f0;
+            height: 10px;
+            border-radius: 5px;
             overflow: hidden;
+            margin: 10px 0;
         }
         
-        .progress {
+        .progress-fill {
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
             height: 100%;
-            border-radius: 4px;
+            transition: width 0.5s ease;
         }
         
-        .progress-1 {
-            background-color: var(--primary-color);
-            width: 35%;
-        }
-        
-        .progress-2 {
-            background-color: var(--accent-color);
-            width: 25%;
-        }
-        
-        .progress-3 {
-            background-color: var(--success-color);
-            width: 20%;
-        }
-        
-        .progress-4 {
-            background-color: var(--warning-color);
-            width: 15%;
-        }
-        
-        .progress-5 {
-            background-color: var(--danger-color);
-            width: 5%;
-        }
-        
-        .checkmark {
-            color: var(--success-color);
-            font-weight: bold;
-        }
-        
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 14px;
-            color: #6c757d;
-            padding: 20px;
-            border-top: 1px solid #eee;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* New Enhanced Data Visualization Styles for v1.01 */
-        .data-visualization {
-            margin-top: 20px;
-        }
-        
-        .chart-container {
-            height: 300px;
-            margin-top: 20px;
-            position: relative;
-        }
-        
-        .tooltip {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            pointer-events: none;
-            display: none;
-        }
-        
-        .legend {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 15px;
-        }
-        
-        .legend-item {
-            display: flex;
+        .budget-pie {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             align-items: center;
-            margin-right: 15px;
+        }
+        
+        .budget-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
         }
         
-        .legend-color {
-            width: 15px;
-            height: 15px;
-            margin-right: 5px;
+        .budget-color {
+            width: 20px;
+            height: 20px;
             border-radius: 3px;
+            margin-right: 10px;
         }
         
-        .legend-label {
-            font-size: 13px;
+        .action-button {
+            background: #d32f2f;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px 5px;
         }
         
-        /* Responsive improvements for v1.01 */
+        .action-button:hover {
+            background: #b71c1c;
+            transform: translateY(-2px);
+        }
+        
+        .screenshot {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-radius: 10px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-branding {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo {
+            width: 40px;
+            height: 40px;
+            background: #5D67FF;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 300;
+        }
+        
+        .confidentiality-notice {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .copyright {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 20px;
+        }
+        
+        .footer-links {
+            margin: 15px 0;
+        }
+        
+        .footer-links a {
+            color: #5D67FF;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
         @media (max-width: 768px) {
-            .budget-overview {
+            .header h1 {
+                font-size: 1.8rem;
+                padding-right: 40px;
+            }
+            
+            .nav-tab {
+                padding: 10px;
+                font-size: 0.9rem;
+                margin: 3px;
+                min-width: 100px;
+            }
+            
+            .budget-pie {
                 grid-template-columns: 1fr;
             }
             
-            .tabs {
-                flex-wrap: wrap;
+            .branding {
+                top: 10px;
+                right: 10px;
             }
             
-            .tab-item {
-                flex-grow: 1;
-                text-align: center;
+            .branding .logo {
+                width: 24px;
+                height: 24px;
+                font-size: 0.9rem;
+                margin-right: 5px;
             }
-        }
-
-        /* v1.01 SEO Design Lab Branding */
-        .seo-design-lab-branding {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 12px;
-            color: #6c757d;
-        }
-
-        .seo-design-lab-branding a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .seo-design-lab-branding a:hover {
-            text-decoration: underline;
+            
+            .branding span {
+                font-size: 0.8rem;
+            }
+            
+            .timeline-item {
+                margin-left: 30px;
+                padding: 12px;
+            }
+            
+            .action-button {
+                width: 100%;
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="https://via.placeholder.com/50" alt="Speedcom Logo">
-                <div class="logo-text">
-                    <h1>Speedcom Communications</h1>
-                    <p>SEO Strategy Dashboard</p>
-                </div>
+    <div class="dashboard">
+        <div class="header">
+            <div class="branding">
+                <div class="logo">S</div>
+                <span>SEODesignLab</span>
             </div>
-            <div class="version-info">v1.01</div>
+            <h1>🏁 Speedcom SEO Strategy Dashboard</h1>
+            <p>Comprehensive SEO Implementation Roadmap for Racing Communications Leader</p>
         </div>
-    </header>
-    
-    <div class="container">
-        <div class="dashboard">
-            <div class="tabs">
-                <div class="tab-item active" data-tab="critical-issues">Critical Issues</div>
-                <div class="tab-item" data-tab="keywords">Keywords</div>
-                <div class="tab-item" data-tab="timeline">Timeline</div>
-                <div class="tab-item" data-tab="metrics">Metrics</div>
-                <div class="tab-item" data-tab="budget">Budget</div>
-            </div>
-            
-            <div class="tab-content active" id="critical-issues">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <h2 class="card-title">Critical SEO Issues</h2>
-                            <p class="card-subtitle">Prioritized list of issues requiring immediate attention</p>
+        
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('critical')">🚨 Critical Issues</div>
+            <div class="nav-tab" onclick="showSection('keywords')">🔍 Keywords</div>
+            <div class="nav-tab" onclick="showSection('timeline')">📅 Timeline</div>
+            <div class="nav-tab" onclick="showSection('metrics')">📊 Success Metrics</div>
+            <div class="nav-tab" onclick="showSection('budget')">💰 Budget</div>
+        </div>
+        
+        <div class="content">
+            <!-- Critical Issues Section -->
+            <div id="critical" class="section active">
+                <div class="critical-issues">
+                    <div class="critical-title">⚠️ IMMEDIATE ACTION REQUIRED</div>
+                    <p style="margin-bottom: 20px;">These technical issues are severely impacting your search rankings and must be addressed first:</p>
+                    
+                    <div class="issue-card">
+                        <div class="issue-title">1. Multiple H1 Headings on Homepage</div>
+                        <p>Search engines are confused by multiple H1 tags diluting your page topic relevance.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
                         </div>
+                        <p><strong>Fix:</strong> Consolidate to single H1: "Professional Racing Communication Systems | Speedcom"</p>
                     </div>
                     
-                    <div class="critical-issues">
-                        <div class="issue-card">
-                            <div class="issue-header">
-                                <div class="issue-title">Optimize Mobile Loading Speed</div>
-                                <div class="issue-priority high">High</div>
-                            </div>
-                            <div class="issue-description">Mobile page load time exceeds 4 seconds. Optimize images and implement lazy loading for media content.</div>
-                            <div class="issue-meta">
-                                <div>Impact: <strong>+28% Performance</strong></div>
-                                <div>Est. Time: 3-5 days</div>
-                            </div>
+                    <div class="issue-card">
+                        <div class="issue-title">2. Product Titles Incorrectly Tagged as H3</div>
+                        <p>Product titles should be paragraphs with proper styling, not heading tags.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
                         </div>
-                        
-                        <div class="issue-card">
-                            <div class="issue-header">
-                                <div class="issue-title">Implement Structured Data</div>
-                                <div class="issue-priority high">High</div>
-                            </div>
-                            <div class="issue-description">Add JSON-LD schema markup for product pages to enhance visibility in search results.</div>
-                            <div class="issue-meta">
-                                <div>Impact: <strong>+15% CTR</strong></div>
-                                <div>Est. Time: 2-3 days</div>
-                            </div>
+                        <p><strong>Fix:</strong> Convert to semantic HTML with proper CSS styling</p>
+                    </div>
+                    
+                    <div class="issue-card">
+                        <div class="issue-title">3. Product Descriptions Tagged as Headings</div>
+                        <p>Descriptions incorrectly tagged as headings confuse content hierarchy.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
                         </div>
-                        
-                        <div class="issue-card">
-                            <div class="issue-header">
-                                <div class="issue-title">Fix Broken Internal Links</div>
-                                <div class="issue-priority medium">Medium</div>
-                            </div>
-                            <div class="issue-description">27 broken internal links found across service pages. Update or redirect these links.</div>
-                            <div class="issue-meta">
-                                <div>Impact: <strong>Improved Crawl Efficiency</strong></div>
-                                <div>Est. Time: 1-2 days</div>
-                            </div>
+                        <p><strong>Fix:</strong> Convert all descriptions to paragraph tags with CSS classes</p>
+                    </div>
+                    
+                    <div class="issue-card">
+                        <div class="issue-title">4. Missing Schema Markup for Products</div>
+                        <p>No structured data = missing rich results and enhanced visibility.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
                         </div>
-                        
-                        <div class="issue-card">
-                            <div class="issue-header">
-                                <div class="issue-title">Optimize Meta Descriptions</div>
-                                <div class="issue-priority medium">Medium</div>
-                            </div>
-                            <div class="issue-description">34 pages have duplicate or missing meta descriptions. Create unique descriptions with targeted keywords.</div>
-                            <div class="issue-meta">
-                                <div>Impact: <strong>+8% CTR</strong></div>
-                                <div>Est. Time: 2-3 days</div>
-                            </div>
-                        </div>
-                        
-                        <div class="issue-card">
-                            <div class="issue-header">
-                                <div class="issue-title">Resolve Duplicate Content</div>
-                                <div class="issue-priority low">Low</div>
-                            </div>
-                            <div class="issue-description">Duplicate content detected across 12 product variation pages. Implement canonical tags to consolidate ranking signals.</div>
-                            <div class="issue-meta">
-                                <div>Impact: <strong>Improved Ranking</strong></div>
-                                <div>Est. Time: 1 day</div>
-                            </div>
-                        </div>
-                        
-                        <div class="issue-card">
-                            <div class="issue-header">
-                                <div class="issue-title">Add Alt Text to Images</div>
-                                <div class="issue-priority low">Low</div>
-                            </div>
-                            <div class="issue-description">56 images missing alt text. Add descriptive alt text with relevant keywords to improve accessibility and SEO.</div>
-                            <div class="issue-meta">
-                                <div>Impact: <strong>+5% Organic Traffic</strong></div>
-                                <div>Est. Time: 1 day</div>
-                            </div>
-                        </div>
+                        <p><strong>Fix:</strong> Implement Product Schema for all racing equipment</p>
+                    </div>
+                </div>
+                
+                <button class="action-button" onclick="showCodeExample()">View Code Examples</button>
+                <button class="action-button" onclick="showSection('timeline')">See Implementation Timeline</button>
+            </div>
+            
+            <!-- Keywords Section -->
+            <div id="keywords" class="section">
+                <h2>🎯 Racing-Focused Keyword Strategy</h2>
+                <p style="margin-bottom: 20px;">Targeting motorsports-specific keywords where Speedcom has unique authority:</p>
+                
+                <div class="keyword-grid">
+                    <div class="keyword-card">
+                        <h3>Primary Keywords</h3>
+                        <div class="keyword">racing communication systems (1,200/mo)</div>
+                        <div class="keyword">motorsports intercom systems (800/mo)</div>
+                        <div class="keyword">racing helmet kits (600/mo)</div>
+                        <div class="keyword">pit to driver radios (450/mo)</div>
+                        <div class="keyword">track-tested racing radios (300/mo)</div>
+                    </div>
+                    
+                    <div class="keyword-card">
+                        <h3>Long-Tail High-Intent</h3>
+                        <div class="keyword">best racing communication for IMSA</div>
+                        <div class="keyword">professional motorsports intercom installation</div>
+                        <div class="keyword">digital race radios for endurance racing</div>
+                        <div class="keyword">helmet compatible racing headsets</div>
+                        <div class="keyword">pit crew communication systems</div>
+                    </div>
+                    
+                    <div class="keyword-card">
+                        <h3>Technical Authority</h3>
+                        <div class="keyword">racing radio frequency setup</div>
+                        <div class="keyword">motorsports communication protocols</div>
+                        <div class="keyword">race day radio troubleshooting</div>
+                        <div class="keyword">FIA approved racing radios</div>
+                        <div class="keyword">SCCA radio requirements</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3>Competitive Advantage</h3>
+                    <p>Unlike generic radio companies, Speedcom targets racing-specific terms that competitors miss, leveraging your "Created by Racers, for Racers" positioning.</p>
+                </div>
+            </div>
+            
+            <!-- Timeline Section -->
+            <div id="timeline" class="section">
+                <h2>⏱️ 16-Week Implementation Timeline</h2>
+                <p style="margin-bottom: 20px;">Phased approach prioritizing critical fixes while building long-term authority:</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="week-label">Week 1-2</div>
+                        <h3>Critical Technical Fixes</h3>
+                        <ul>
+                            <li>✅ Fix H1 structure (single H1 per page)</li>
+                            <li>✅ Correct product title/description tags</li>
+                            <li>✅ Implement basic Schema markup</li>
+                            <li>✅ Homepage hierarchy restructure</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="week-label">Week 3-6</div>
+                        <h3>Content Optimization & Initial Link Building</h3>
+                        <ul>
+                            <li>🔄 Optimize title tags and meta descriptions</li>
+                            <li>🔄 Restructure URL architecture</li>
+                            <li>🔄 Update homepage content hierarchy</li>
+                            <li>🔄 Internal linking optimization</li>
+                            <li>🔄 Create 2-3 citations (monthly)</li>
+                            <li>🔄 Set up first cloud stack</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="week-label">Week 7-12</div>
+                        <h3>Authority Content & Backlink Development</h3>
+                        <ul>
+                            <li>📝 Create racing industry technical guides</li>
+                            <li>📝 Develop product comparison content</li>
+                            <li>📝 Racing protocol educational content</li>
+                            <li>📝 Guest post on industry publication</li>
+                            <li>📝 Develop & distribute press release (Q1)</li>
+                            <li>📝 Create 2 cloud stacks (monthly)</li>
+                            <li>📝 Build 3-5 citations (monthly)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="week-label">Week 13-16</div>
+                        <h3>Advanced Features & Monitoring</h3>
+                        <ul>
+                            <li>🚀 Complete Schema markup implementation</li>
+                            <li>🚀 Speed optimization and Core Web Vitals</li>
+                            <li>🚀 Mobile experience enhancement</li>
+                            <li>🚀 Comprehensive analytics setup</li>
+                            <li>🚀 Continue monthly link building (citations, cloud stacks, guest posts)</li>
+                            <li>🚀 Prepare for Q2 press release</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; background: #f0f8ff; padding: 15px; border-radius: 8px;">
+                    <h3>Ongoing Link Building Strategy</h3>
+                    <ul style="margin-top: 10px; line-height: 1.6;">
+                        <li><strong>Citations:</strong> 3-5 new directory listings monthly</li>
+                        <li><strong>Cloud Stacks:</strong> 2 multi-tiered link structures monthly</li>
+                        <li><strong>Guest Posts:</strong> 1 industry publication placement monthly</li>
+                        <li><strong>Press Releases:</strong> 1 newsworthy announcement quarterly</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Metrics Section -->
+            <div id="metrics" class="section">
+                <h2>📈 Success Metrics & KPIs</h2>
+                <p style="margin-bottom: 20px;">Measurable goals aligned with Speedcom's racing industry expertise:</p>
+                
+                <h3>30-Day Targets</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Single H1 Implementation</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">25%</div>
+                        <div class="metric-label">Core Web Vitals Improvement</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">15%</div>
+                        <div class="metric-label">CTR Increase</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">0</div>
+                        <div class="metric-label">Critical SEO Errors</div>
+                    </div>
+                </div>
+                
+                <h3>90-Day Targets</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">Top 5</div>
+                        <div class="metric-label">Primary Keyword Rankings</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">40%</div>
+                        <div class="metric-label">Organic Traffic Increase</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">50%</div>
+                        <div class="metric-label">Site Speed Improvement</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">30+</div>
+                        <div class="metric-label">New Backlinks</div>
+                    </div>
+                </div>
+                
+                <h3>12-Month Goals</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">Top 3</div>
+                        <div class="metric-label">"Racing Communication Systems"</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">200%</div>
+                        <div class="metric-label">Racing Keyword Traffic</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">30%</div>
+                        <div class="metric-label">Organic Conversion Rate</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">#1</div>
+                        <div class="metric-label">Racing Communications Authority</div>
                     </div>
                 </div>
             </div>
             
-            <div class="tab-content" id="keywords">
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <h2 class="card-title">Target Keywords</h2>
-                            <p class="card-subtitle">Prioritized keywords for content optimization</p>
+            <!-- Budget Section -->
+            <div id="budget" class="section">
+                <h2>💰 Investment Allocation</h2>
+                <p style="margin-bottom: 20px;">Strategic budget distribution for maximum ROI:</p>
+                
+                <div class="budget-pie">
+                    <div>
+                        <div class="budget-item">
+                            <div style="display: flex; align-items: center;">
+                                <div class="budget-color" style="background: #d32f2f;"></div>
+                                <span>Technical Implementation</span>
+                            </div>
+                            <span><strong>35%</strong></span>
+                        </div>
+                        <div class="budget-item">
+                            <div style="display: flex; align-items: center;">
+                                <div class="budget-color" style="background: #ff5722;"></div>
+                                <span>Content Creation</span>
+                            </div>
+                            <span><strong>25%</strong></span>
+                        </div>
+                        <div class="budget-item">
+                            <div style="display: flex; align-items: center;">
+                                <div class="budget-color" style="background: #ff9800;"></div>
+                                <span>Link Building</span>
+                            </div>
+                            <span><strong>25%</strong></span>
+                        </div>
+                        <div class="budget-item">
+                            <div style="display: flex; align-items: center;">
+                                <div class="budget-color" style="background: #4caf50;"></div>
+                                <span>Tools & Analytics</span>
+                            </div>
+                            <span><strong>15%</strong></span>
                         </div>
                     </div>
                     
-                    <table class="keywords-table">
-                        <thead>
-                            <tr>
-                                <th>Keyword</th>
-                                <th>Search Volume</th>
-                                <th>Current Position</th>
-                                <th>Competition</th>
-                                <th>Priority</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>race car communications</td>
-                                <td>3,600/mo</td>
-                                <td>14</td>
-                                <td>Medium</td>
-                                <td>High</td>
-                            </tr>
-                            <tr>
-                                <td>racing radio systems</td>
-                                <td>2,900/mo</td>
-                                <td>8</td>
-                                <td>Medium</td>
-                                <td>High</td>
-                            </tr>
-                            <tr>
-                                <td>motorsport communication equipment</td>
-                                <td>1,800/mo</td>
-                                <td>5</td>
-                                <td>High</td>
-                                <td>High</td>
-                            </tr>
-                            <tr>
-                                <td>racing team headsets</td>
-                                <td>1,200/mo</td>
-                                <td>12</td>
-                                <td>Medium</td>
-                                <td>Medium</td>
-                            </tr>
-                            <tr>
-                                <td>pit crew communication</td>
-                                <td>950/mo</td>
-                                <td>18</td>
-                                <td>Low</td>
-                                <td>Medium</td>
-                            </tr>
-                            <tr>
-                                <td>rally team radio systems</td>
-                                <td>720/mo</td>
-                                <td>25</td>
-                                <td>Low</td>
-                                <td>Low</td>
-                            </tr>
-                            <tr>
-                                <td>nascar communications</td>
-                                <td>2,500/mo</td>
-                                <td>32</td>
-                                <td>High</td>
-                                <td>Medium</td>
-                            </tr>
-                            <tr>
-                                <td>formula 1 radio equipment</td>
-                                <td>3,100/mo</td>
-                                <td>42</td>
-                                <td>High</td>
-                                <td>Low</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <!-- New in v1.01: Enhanced data visualization for keywords -->
-                    <div class="data-visualization">
-                        <div class="chart-container">
-                            <!-- This would be replaced with actual chart in production -->
-                            <div style="width: 100%; height: 100%; background-color: #f8f9fa; display: flex; justify-content: center; align-items: center; font-style: italic; color: #6c757d;">
-                                Interactive keyword trends chart (updated weekly)
-                            </div>
-                        </div>
-                        <div class="legend">
-                            <div class="legend-item">
-                                <div class="legend-color" style="background-color: var(--primary-color);"></div>
-                                <div class="legend-label">Current Position</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background-color: var(--accent-color);"></div>
-                                <div class="legend-label">Search Volume</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background-color: var(--success-color);"></div>
-                                <div class="legend-label">Click-Through Rate</div>
-                            </div>
-                        </div>
+                    <div>
+                        <h3>Priority Investments</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 8px 0;">🛠️ Immediate technical fixes (H1, Schema)</li>
+                            <li style="padding: 8px 0;">📝 Racing-specific content development</li>
+                            <li style="padding: 8px 0;">🔗 Strategic backlink acquisition (guest posts, citations)</li>
+                            <li style="padding: 8px 0;">🔧 Site speed & mobile optimization</li>
+                            <li style="padding: 8px 0;">📊 Advanced analytics setup</li>
+                            <li style="padding: 8px 0;">📣 Quarterly press releases</li>
+                            <li style="padding: 8px 0;">🤝 Racing industry partnerships</li>
+                        </ul>
                     </div>
                 </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <button class="action-button">Get Detailed Quote</button>
+                    <button class="action-button">Schedule Strategy Call</button>
+                </div>
             </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-branding">
+                    <div class="footer-logo">S</div>
+                    <div class="company-name">SEODesignLab, LLC</div>
+                </div>
+                
+                <div class="confidentiality-notice">
+                    <strong>🔒 CONFIDENTIAL & PROPRIETARY</strong><br>
+                    This dashboard and all contained data, strategies, and recommendations are proprietary and confidential information of SEODesignLab, LLC. This information is intended solely for the use of authorized personnel and may not be reproduced, distributed, or transmitted without explicit written permission.
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
+                <div class="copyright">
+                    © 2024 SEODesignLab, LLC. All rights reserved.<br>
+                    SEODesignLab™ is a trademark of SEODesignLab, LLC.<br>
+                    <em>Empowering businesses through strategic SEO excellence.</em>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
             
+            // Remove active from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active to clicked tab
+            event.currentTarget.classList.add('active');
+        }
+        
+        function showCodeExample() {
+            alert('Code examples section would show detailed HTML corrections for H1 structure, Schema markup implementation, and proper product tagging.');
+        }
+        
+        // Animate progress bars when section is shown
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    bar.style.width = Math.random() * 100 + '%';
+                }, index * 200);
+            });
+        }
+        
+        // Initialize animations on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(animateProgressBars, 500);
+        });
+    </script>
+</body>
+</html>
